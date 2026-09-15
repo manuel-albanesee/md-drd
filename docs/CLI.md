@@ -1,13 +1,13 @@
 # Riferimento CLI
 
-> Documento **generato** da `scripts/generate_docs.py` a partire dal parser `argparse` di `md_drd/cli.py` (`--help` di ogni comando). Non modificare a mano: la fonte e' il codice.
+> Documento **generato** da `scripts/generate_docs.py` a partire dal parser `argparse` di `themis/cli.py` (`--help` di ogni comando). Non modificare a mano: la fonte e' il codice.
 
 ```text
-usage: md-drd [-h] [--version]
+usage: themis [-h] [--version]
               {validate,fix-plan,rules,project,all,init,ci-init,hooks-init,verify-sources,import-tex,coverage-diff,brief,trace-code,license}
               ...
 
-MD-DRD — assistente di sviluppo guidato da specifica: valida il grafo canonico dei requisiti e ne
+Themis — assistente di sviluppo guidato da specifica: valida il grafo canonico dei requisiti e ne
 proietta i documenti.
 
 positional arguments:
@@ -17,7 +17,7 @@ positional arguments:
     rules               catalogo dei controlli deterministici
     project             genera i documenti proiettati
     all                 valida e poi proietta
-    init                crea un progetto MD-DRD minimo gia' conforme
+    init                crea un progetto Themis minimo gia' conforme
     ci-init             genera un workflow GitHub Actions autonomo per CI su runner self-hosted
                         del cliente
     hooks-init          scrive hook git nativi (pre-push blocca, post-merge avvisa) sulla macchina
@@ -39,10 +39,10 @@ Codici di uscita: 0 conforme · 1 non conforme · 2 schema invalido · 3 uso err
 invalido · 5 errore interno.
 ```
 
-## `md-drd validate`
+## `themis validate`
 
 ```text
-usage: md-drd validate [-h] [--format {text,json}] [--lang {it,en}] [--schema SCHEMA]
+usage: themis validate [-h] [--format {text,json}] [--lang {it,en}] [--schema SCHEMA]
                        [--no-schema] [-v]
                        graph
 
@@ -52,16 +52,16 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   --format {text,json}  text per una persona, json per un agente o una pipeline
-  --lang {it,en}        lingua dei messaggi (default: $MD_DRD_LANG, locale di sistema, it)
-  --schema SCHEMA       JSON Schema alternativo (default: md-drd-graph.schema.json del pacchetto)
+  --lang {it,en}        lingua dei messaggi (default: $THEMIS_LANG, locale di sistema, it)
+  --schema SCHEMA       JSON Schema alternativo (default: themis-graph.schema.json del pacchetto)
   --no-schema           esegui solo i gate
   -v, --verbose         elenca i singoli difetti
 ```
 
-## `md-drd fix-plan`
+## `themis fix-plan`
 
 ```text
-usage: md-drd fix-plan [-h] [--format {text,json}] [--lang {it,en}] [--schema SCHEMA]
+usage: themis fix-plan [-h] [--format {text,json}] [--lang {it,en}] [--schema SCHEMA]
                        [--blocking-only] [--watch] [--interval INTERVAL]
                        graph
 
@@ -71,33 +71,33 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   --format {text,json}  text per una persona, json per un agente o una pipeline
-  --lang {it,en}        lingua dei messaggi (default: $MD_DRD_LANG, locale di sistema, it)
+  --lang {it,en}        lingua dei messaggi (default: $THEMIS_LANG, locale di sistema, it)
   --schema SCHEMA
   --blocking-only       ignora i difetti maggiori
   --watch               rivalida a ogni modifica del grafo
   --interval INTERVAL   intervallo di polling con --watch
 ```
 
-## `md-drd rules`
+## `themis rules`
 
 ```text
-usage: md-drd rules [-h] [--format {text,json}] [--lang {it,en}] [--check CHECK] [--gate GATE]
+usage: themis rules [-h] [--format {text,json}] [--lang {it,en}] [--check CHECK] [--gate GATE]
                     [--detailed] [--markdown]
 
 options:
   -h, --help            show this help message and exit
   --format {text,json}  text per una persona, json per un agente o una pipeline
-  --lang {it,en}        lingua dei messaggi (default: $MD_DRD_LANG, locale di sistema, it)
+  --lang {it,en}        lingua dei messaggi (default: $THEMIS_LANG, locale di sistema, it)
   --check CHECK         un singolo controllo, es. G3.2
   --gate GATE           tutti i controlli di un gate, es. G3
   --detailed            motivazione, remediation ed esempi
   --markdown            emetti docs/RULEBOOK.md su stdout
 ```
 
-## `md-drd project`
+## `themis project`
 
 ```text
-usage: md-drd project [-h] [--format {text,json}] [--lang {it,en}] [--out OUT] [--schema SCHEMA]
+usage: themis project [-h] [--format {text,json}] [--lang {it,en}] [--out OUT] [--schema SCHEMA]
                       [--no-schema] [-v]
                       graph
 
@@ -107,17 +107,17 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   --format {text,json}  text per una persona, json per un agente o una pipeline
-  --lang {it,en}        lingua dei messaggi (default: $MD_DRD_LANG, locale di sistema, it)
+  --lang {it,en}        lingua dei messaggi (default: $THEMIS_LANG, locale di sistema, it)
   --out OUT
   --schema SCHEMA
   --no-schema
   -v, --verbose
 ```
 
-## `md-drd all`
+## `themis all`
 
 ```text
-usage: md-drd all [-h] [--format {text,json}] [--lang {it,en}] [--out OUT] [--schema SCHEMA]
+usage: themis all [-h] [--format {text,json}] [--lang {it,en}] [--out OUT] [--schema SCHEMA]
                   [--no-schema] [-v]
                   graph
 
@@ -127,17 +127,17 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   --format {text,json}  text per una persona, json per un agente o una pipeline
-  --lang {it,en}        lingua dei messaggi (default: $MD_DRD_LANG, locale di sistema, it)
+  --lang {it,en}        lingua dei messaggi (default: $THEMIS_LANG, locale di sistema, it)
   --out OUT
   --schema SCHEMA
   --no-schema
   -v, --verbose
 ```
 
-## `md-drd init`
+## `themis init`
 
 ```text
-usage: md-drd init [-h] [--format {text,json}] [--lang {it,en}] [--project PROJECT] [--code CODE]
+usage: themis init [-h] [--format {text,json}] [--lang {it,en}] [--project PROJECT] [--code CODE]
                    [--profile {minimal,full}] [--baseline-id BASELINE_ID] [--with-hooks] [--force]
                    [directory]
 
@@ -147,7 +147,7 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   --format {text,json}  text per una persona, json per un agente o una pipeline
-  --lang {it,en}        lingua dei messaggi (default: $MD_DRD_LANG, locale di sistema, it)
+  --lang {it,en}        lingua dei messaggi (default: $THEMIS_LANG, locale di sistema, it)
   --project PROJECT     nome del progetto
   --code CODE           codice breve del progetto, es. ACME
   --profile {minimal,full}
@@ -160,10 +160,10 @@ options:
   --force               sovrascrivi i file esistenti
 ```
 
-## `md-drd ci-init`
+## `themis ci-init`
 
 ```text
-usage: md-drd ci-init [-h] [--format {text,json}] [--lang {it,en}] [--graph GRAPH]
+usage: themis ci-init [-h] [--format {text,json}] [--lang {it,en}] [--graph GRAPH]
                       [--runner {self-hosted}] [--workflow-filename WORKFLOW_FILENAME] [--force]
                       [directory]
 
@@ -173,7 +173,7 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   --format {text,json}  text per una persona, json per un agente o una pipeline
-  --lang {it,en}        lingua dei messaggi (default: $MD_DRD_LANG, locale di sistema, it)
+  --lang {it,en}        lingua dei messaggi (default: $THEMIS_LANG, locale di sistema, it)
   --graph GRAPH         percorso del grafo canonico nel repository del cliente, embedito nello
                         step 'validate' del workflow generato
   --runner {self-hosted}
@@ -184,10 +184,10 @@ options:
   --force               sovrascrivi il workflow se esiste gia'
 ```
 
-## `md-drd hooks-init`
+## `themis hooks-init`
 
 ```text
-usage: md-drd hooks-init [-h] [--format {text,json}] [--lang {it,en}] [--graph GRAPH] [--force]
+usage: themis hooks-init [-h] [--format {text,json}] [--lang {it,en}] [--graph GRAPH] [--force]
                          [directory]
 
 positional arguments:
@@ -196,15 +196,15 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   --format {text,json}  text per una persona, json per un agente o una pipeline
-  --lang {it,en}        lingua dei messaggi (default: $MD_DRD_LANG, locale di sistema, it)
+  --lang {it,en}        lingua dei messaggi (default: $THEMIS_LANG, locale di sistema, it)
   --graph GRAPH         percorso del grafo canonico validato dagli hook generati
   --force               sovrascrivi gli hook se esistono gia'
 ```
 
-## `md-drd verify-sources`
+## `themis verify-sources`
 
 ```text
-usage: md-drd verify-sources [-h] [--format {text,json}] [--lang {it,en}] --docs-dir DOCS_DIR
+usage: themis verify-sources [-h] [--format {text,json}] [--lang {it,en}] --docs-dir DOCS_DIR
                              [--map MAP]
                              graph
 
@@ -214,21 +214,21 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   --format {text,json}  text per una persona, json per un agente o una pipeline
-  --lang {it,en}        lingua dei messaggi (default: $MD_DRD_LANG, locale di sistema, it)
+  --lang {it,en}        lingua dei messaggi (default: $THEMIS_LANG, locale di sistema, it)
   --docs-dir DOCS_DIR
   --map MAP             ID=percorso relativo a --docs-dir (es. D1=Guida.docx), ripetibile
 ```
 
-## `md-drd import-tex`
+## `themis import-tex`
 
 ```text
-usage: md-drd import-tex [-h] [--format {text,json}] [--lang {it,en}] --doc DOC [--title TITLE]
+usage: themis import-tex [-h] [--format {text,json}] [--lang {it,en}] --doc DOC [--title TITLE]
                          [--authority AUTHORITY] [--out OUT]
 
 options:
   -h, --help            show this help message and exit
   --format {text,json}  text per una persona, json per un agente o una pipeline
-  --lang {it,en}        lingua dei messaggi (default: $MD_DRD_LANG, locale di sistema, it)
+  --lang {it,en}        lingua dei messaggi (default: $THEMIS_LANG, locale di sistema, it)
   --doc DOC             ID=percorso.tex (es. D1=FSD/Analisi.tex), ripetibile; l'ordine passato
                         conta per la deduplicazione dei punti aperti fra documenti
   --title TITLE         ID=titolo esplicito (default: dal nome file), ripetibile
@@ -238,10 +238,10 @@ options:
                         questo file, da rivedere e fondere a mano nel grafo
 ```
 
-## `md-drd coverage-diff`
+## `themis coverage-diff`
 
 ```text
-usage: md-drd coverage-diff [-h] [--format {text,json}] [--lang {it,en}]
+usage: themis coverage-diff [-h] [--format {text,json}] [--lang {it,en}]
                             [--min-coverage MIN_COVERAGE]
                             graph_before graph_after
 
@@ -252,15 +252,15 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   --format {text,json}  text per una persona, json per un agente o una pipeline
-  --lang {it,en}        lingua dei messaggi (default: $MD_DRD_LANG, locale di sistema, it)
+  --lang {it,en}        lingua dei messaggi (default: $THEMIS_LANG, locale di sistema, it)
   --min-coverage MIN_COVERAGE
                         soglia minima richiesta sulla nuova baseline (default 0.98)
 ```
 
-## `md-drd brief`
+## `themis brief`
 
 ```text
-usage: md-drd brief [-h] [--format {text,json}] [--lang {it,en}] [--out OUT] [--all]
+usage: themis brief [-h] [--format {text,json}] [--lang {it,en}] [--out OUT] [--all]
                     [--out-dir OUT_DIR]
                     graph [wp]
 
@@ -271,16 +271,16 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   --format {text,json}  text per una persona, json per un agente o una pipeline
-  --lang {it,en}        lingua dei messaggi (default: $MD_DRD_LANG, locale di sistema, it)
+  --lang {it,en}        lingua dei messaggi (default: $THEMIS_LANG, locale di sistema, it)
   --out OUT             file di output (default: stdout)
   --all                 un brief per ogni work package
   --out-dir OUT_DIR     cartella di output con --all
 ```
 
-## `md-drd trace-code`
+## `themis trace-code`
 
 ```text
-usage: md-drd trace-code [-h] [--format {text,json}] [--lang {it,en}] --code-dir CODE_DIR
+usage: themis trace-code [-h] [--format {text,json}] [--lang {it,en}] --code-dir CODE_DIR
                          [--ext EXT] [--files FILES]
                          graph
 
@@ -290,7 +290,7 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   --format {text,json}  text per una persona, json per un agente o una pipeline
-  --lang {it,en}        lingua dei messaggi (default: $MD_DRD_LANG, locale di sistema, it)
+  --lang {it,en}        lingua dei messaggi (default: $THEMIS_LANG, locale di sistema, it)
   --code-dir CODE_DIR
   --ext EXT             estensioni separate da virgola (default: .py,.ts,.tsx,.js,.jsx,.sql,.md)
   --files FILES         limita lo scan ai file elencati in questo file (uno per riga, relativi a
@@ -298,10 +298,10 @@ options:
                         --name-only' su una PR
 ```
 
-## `md-drd license`
+## `themis license`
 
 ```text
-usage: md-drd license [-h] [--format {text,json}] [--lang {it,en}] [--token TOKEN] [--url URL]
+usage: themis license [-h] [--format {text,json}] [--lang {it,en}] [--token TOKEN] [--url URL]
                       [{fingerprint,info,activate}]
 
 positional arguments:
@@ -313,8 +313,8 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   --format {text,json}  text per una persona, json per un agente o una pipeline
-  --lang {it,en}        lingua dei messaggi (default: $MD_DRD_LANG, locale di sistema, it)
+  --lang {it,en}        lingua dei messaggi (default: $THEMIS_LANG, locale di sistema, it)
   --token TOKEN         activation token ricevuto dopo l'acquisto (richiesto con 'activate')
   --url URL             endpoint di attivazione, per test/staging (default: variabile
-                        MD_DRD_ACTIVATION_URL o l'endpoint di produzione)
+                        THEMIS_ACTIVATION_URL o l'endpoint di produzione)
 ```

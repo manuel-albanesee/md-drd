@@ -1,9 +1,8 @@
-# MD-DRD
+# Themis
 
-> **MD-DRD** = **M**ark**D**own **D**esign & **R**equirements **D**ocument — il grafo canonico di
-> requisiti (bisogno → requisito → architettura → work package → test) definito da
-> **[MD-DRD-SPEC-001](docs/MD-DRD-SPEC-001.md)** e validato da regole deterministiche, non da un
-> altro prompt.
+> **Themis** — il grafo canonico di requisiti (bisogno → requisito → architettura → work package
+> → test) definito da **[THEMIS-SPEC-001](docs/THEMIS-SPEC-001.md)** e validato da regole
+> deterministiche, non da un altro prompt.
 
 **Questo repository è la vetrina pubblica del prodotto**: documentazione cliente, la specifica che
 il toolkit implementa, e i binari compilati scaricabili. Il codice sorgente è proprietario e vive
@@ -14,7 +13,7 @@ in un repository privato — non è distribuito né qui né su PyPI (vedi [Licen
 Una specifica scritta in prosa (Word, Confluence, un lungo file Markdown) non impedisce a un
 requisito di restare senza test, a un work package di restare senza requisiti a monte, o a un
 agente che ha appena scritto la specifica di essere anche l'unico giudice di quanto sia ben fatta.
-MD-DRD sostituisce la prosa con un **grafo esplicito** e lo verifica con **73 controlli
+Themis sostituisce la prosa con un **grafo esplicito** e lo verifica con **73 controlli
 deterministici su 10 gate** (`G0`..`G9`): requisiti orfani, WBS incompleta, lessico non
 verificabile, copertura dei test, e altro. Zero difetti bloccanti prima di implementare, non
 durante il collaudo.
@@ -36,7 +35,7 @@ postazioni acquistate è la quantità scelta in fase di acquisto.
 
 ## Acquisto, download, attivazione
 
-1. **Acquista** su [md-drd-licensing.vercel.app](https://md-drd-licensing.vercel.app) (Stripe
+1. **Acquista** su [themis-licensing.vercel.app](https://themis-licensing.vercel.app) (Stripe
    Checkout — al momento in modalità test, vedi nota sotto). Dopo il pagamento, la pagina di
    consegna mostra il link di download per la tua piattaforma e il comando di attivazione.
 2. **In alternativa**, scarica in qualunque momento il binario per la tua piattaforma dalla
@@ -44,15 +43,15 @@ postazioni acquistate è la quantità scelta in fase di acquisto.
 
    | Piattaforma | File |
    |---|---|
-   | Windows | `md-drd-windows-latest.exe` |
-   | macOS | `md-drd-macos-latest` |
-   | Linux | `md-drd-ubuntu-latest` |
+   | Windows | `themis-windows-latest.exe` |
+   | macOS | `themis-macos-latest` |
+   | Linux | `themis-ubuntu-latest` |
 
-   (stesso elenco per `md-drd-mcp`, il server MCP — vedi [`docs/MCP.md`](docs/MCP.md)).
-3. **Attiva** la licenza sulla macchina dove userai MD-DRD:
+   (stesso elenco per `themis-mcp`, il server MCP — vedi [`docs/MCP.md`](docs/MCP.md)).
+3. **Attiva** la licenza sulla macchina dove userai Themis:
 
    ```bash
-   md-drd license activate --token <token-mostrato dopo l'acquisto>
+   themis license activate --token <token-mostrato dopo l'acquisto>
    ```
 
    Il CLI calcola la fingerprint della macchina, contatta una volta sola il servizio di
@@ -72,7 +71,7 @@ MCP, e i comandi git successivi.
 
 ## Come funziona
 
-> I gate sono codice, non prompt (MD-DRD-SPEC-001 §16.2).
+> I gate sono codice, non prompt (THEMIS-SPEC-001 §16.2).
 
 Nessun modello linguistico decide se un requisito è ben formato: regole deterministiche
 (espressioni regolari sul lessico vietato, calcolo di grafo per gli orfani, PERT/CPM sul piano, la
@@ -81,9 +80,9 @@ riproducibile, senza che la stessa istanza che ha scritto il contenuto ne giudic
 conformità.
 
 ```bash
-md-drd init progetto/                       # scheletro minimo, già conforme
-md-drd validate progetto/graph.yaml -v      # 73 controlli, 0 = conforme
-md-drd project  progetto/graph.yaml --out out/   # RTM, conformità, governance, backlog, ReqIF
+themis init progetto/                       # scheletro minimo, già conforme
+themis validate progetto/graph.yaml -v      # 73 controlli, 0 = conforme
+themis project  progetto/graph.yaml --out out/   # RTM, conformità, governance, backlog, ReqIF
 ```
 
 ## Integrazione con agenti di coding
@@ -92,8 +91,8 @@ Codici di uscita stabili (`0` conforme, `1` non conforme, ...), `--format json` 
 con schema versionato, e ogni difetto già corredato di `json_pointer` e remediation: un agente
 decide il da farsi dal codice di uscita, senza logica ad hoc per interpretare l'output.
 
-- **CLI** — `md-drd <comando> --format json`, per script, CI e agenti senza supporto MCP.
-- **Server MCP** — `md-drd-mcp` espone `validate`/`fix-plan`/`brief`/`trace-code`/`coverage-diff`/
+- **CLI** — `themis <comando> --format json`, per script, CI e agenti senza supporto MCP.
+- **Server MCP** — `themis-mcp` espone `validate`/`fix-plan`/`brief`/`trace-code`/`coverage-diff`/
   `verify-sources` come tool nativi per Claude Code, Cursor o qualunque client MCP.
 
 → **[Guida all'integrazione con agenti di coding](docs/AGENT-INTEGRATION.md)** e
@@ -104,7 +103,7 @@ decide il da farsi dal codice di uscita, senza logica ad hoc per interpretare l'
 | Documento | Contenuto |
 |---|---|
 | [`docs/ONBOARDING.md`](docs/ONBOARDING.md) | guida per nuovi clienti: acquisto, installazione, licenza, primo grafo, CLI vs MCP, git |
-| [`docs/MD-DRD-SPEC-001.md`](docs/MD-DRD-SPEC-001.md) | la specifica normativa che questo toolkit implementa |
+| [`docs/THEMIS-SPEC-001.md`](docs/THEMIS-SPEC-001.md) | la specifica normativa che questo toolkit implementa |
 | [`docs/QUICKSTART.md`](docs/QUICKSTART.md) | primi 15 minuti, comando per comando |
 | [`docs/AGENT-INTEGRATION.md`](docs/AGENT-INTEGRATION.md) | loop di lavoro per un agente di coding, CLI vs MCP, CI |
 | [`docs/MCP.md`](docs/MCP.md) | server MCP: installazione, configurazione client, tool e risorse |

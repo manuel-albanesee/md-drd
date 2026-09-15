@@ -1,14 +1,14 @@
-# Contratto di licenza d'uso finale (EULA) — md-drd-toolkit
+# Contratto di licenza d'uso finale (EULA) — themis-toolkit
 
 > **BOZZA — richiede revisione legale prima dell'uso commerciale.** Questo testo è stato
 > redatto per coprire i punti minimi necessari (F0.T1.2, `ROADMAP.md`) ed è coerente con il
-> meccanismo tecnico realmente implementato (`md_drd/license.py`, `scripts/issue_license.py`),
+> meccanismo tecnico realmente implementato (`themis/license.py`, `scripts/issue_license.py`),
 > ma non è stato validato da un legale. Non distribuire il prodotto a clienti paganti sulla base
 > di questo testo senza revisione professionale, in particolare per la sezione 10 (foro
 > competente/legge applicabile), oggi un segnaposto esplicito.
 
 **Licenziante:** Manuel Albanese, persona fisica (di seguito "il Licenziante").
-**Prodotto:** md-drd-toolkit — comprende gli eseguibili compilati `md-drd` e `md-drd-mcp`, la
+**Prodotto:** themis-toolkit — comprende gli eseguibili compilati `themis` e `themis-mcp`, la
 relativa documentazione e ogni aggiornamento fornito dal Licenziante (di seguito "il Software").
 
 Installando, copiando o eseguendo il Software, il Licenziatario ("Cliente" o "Utente") accetta
@@ -27,14 +27,14 @@ esclusiva proprietà del Licenziante.
 ## 2. Meccanismo di attivazione
 
 Il Software richiede, per funzionare, un File di Licenza valido presente sulla macchina del
-Cliente (di norma in `~/.md-drd/license.json`, sovrascrivibile tramite la variabile d'ambiente
-`MD_DRD_LICENSE_FILE`). Il File di Licenza è firmato digitalmente dal Licenziante e verificato
+Cliente (di norma in `~/.themis/license.json`, sovrascrivibile tramite la variabile d'ambiente
+`THEMIS_LICENSE_FILE`). Il File di Licenza è firmato digitalmente dal Licenziante e verificato
 offline dal Software: **non esiste alcun server di attivazione**, nessuna connessione di rete è
 richiesta o effettuata per l'attivazione o per l'uso ordinario del Software.
 
 Il File di Licenza autorizza un elenco fisso di identificativi macchina ("fingerprint"), fino al
 numero massimo di postazioni acquistate ("seat"). Il Cliente ottiene l'identificativo della
-propria macchina eseguendo il comando `md-drd license fingerprint`, fornito dallo stesso
+propria macchina eseguendo il comando `themis license fingerprint`, fornito dallo stesso
 eseguibile, e lo comunica al Licenziante prima dell'emissione o dell'estensione del File di
 Licenza. L'aggiunta di una postazione richiede la riemissione del File di Licenza da parte del
 Licenziante: il Cliente non può modificare autonomamente l'elenco delle macchine autorizzate né
@@ -43,7 +43,7 @@ il numero di postazioni.
 Il File di Licenza ha una data di scadenza. **Non è previsto alcun periodo di tolleranza
 ("grace period"): allo scadere della licenza, o su una macchina non presente nell'elenco
 autorizzato, il Software rifiuta di eseguire qualunque comando** (fatta eccezione per il comando
-diagnostico `md-drd license fingerprint`, sempre disponibile per consentire l'attivazione o il
+diagnostico `themis license fingerprint`, sempre disponibile per consentire l'attivazione o il
 rinnovo).
 
 ## 3. Restrizioni d'uso

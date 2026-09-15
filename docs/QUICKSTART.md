@@ -7,16 +7,16 @@ comandi così come sono: usano le fixture già presenti in `examples/`, non serv
 
 ```bash
 pip install -e .[dev]        # da checkout — vedi README.md § Installazione per il binario cliente
-md-drd --version
+themis --version
 ```
 
 ## 1. Crea un progetto minimo
 
-`md-drd init` genera lo scheletro più piccolo che sia già conforme: uno stakeholder per
+`themis init` genera lo scheletro più piccolo che sia già conforme: uno stakeholder per
 categoria, un bisogno, un requisito, un work package, un test case.
 
 ```bash
-md-drd init progetto-demo/
+themis init progetto-demo/
 ```
 
 Guarda cosa è stato creato:
@@ -28,7 +28,7 @@ cat progetto-demo/graph.yaml
 ## 2. Valida
 
 ```bash
-md-drd validate progetto-demo/graph.yaml -v
+themis validate progetto-demo/graph.yaml -v
 ```
 
 Uscita attesa: `0 bloccanti, 0 maggiori`, codice di uscita `0`. Questo è il punto di partenza:
@@ -41,7 +41,7 @@ annotato con un commento `# DIFETTO Gx.y`). È il modo più rapido per vedere co
 toolkit prima che arrivi in implementazione:
 
 ```bash
-md-drd fix-plan examples/broken/graph.yaml
+themis fix-plan examples/broken/graph.yaml
 ```
 
 L'output raggruppa i difetti per controllo, bloccanti prima, con la remediation già inclusa in
@@ -49,7 +49,7 @@ ogni gruppo — non serve consultare altro per sapere cosa correggere. Per una s
 catalogo:
 
 ```bash
-md-drd rules --check G3.2 --detailed
+themis rules --check G3.2 --detailed
 ```
 
 ## 4. Proietta i documenti
@@ -58,7 +58,7 @@ Dal grafo conforme di prima (o da `examples/complete/graph.yaml`, che ha tutte l
 specifica: vincoli, ADR, compromessi, spike, storie, punti aperti, due release):
 
 ```bash
-md-drd project examples/complete/graph.yaml --out out/
+themis project examples/complete/graph.yaml --out out/
 ls out/
 ```
 
@@ -76,7 +76,7 @@ test, rischi, tracciabilità alle fonti — tutto derivato deterministicamente d
 indovinare.
 
 ```bash
-md-drd brief examples/complete/graph.yaml WP-002 --out WP-002-brief.md
+themis brief examples/complete/graph.yaml WP-002 --out WP-002-brief.md
 cat WP-002-brief.md
 ```
 
@@ -87,7 +87,7 @@ Ogni comando accetta `--format json`: un solo oggetto JSON su stdout, diagnostic
 esatto del grafo e la propria `remediation`.
 
 ```bash
-md-drd validate examples/broken/graph.yaml --format json | jq '.exit_code, .summary'
+themis validate examples/broken/graph.yaml --format json | jq '.exit_code, .summary'
 ```
 
 ## Prossimi passi
@@ -98,5 +98,5 @@ md-drd validate examples/broken/graph.yaml --format json | jq '.exit_code, .summ
 - **Serve capire un controllo o un campo dello schema?** → [`RULEBOOK.md`](RULEBOOK.md) (catalogo
   dei controlli) e [`SCHEMA.md`](SCHEMA.md) (struttura del grafo).
 - **Un documento sorgente reale (analisi funzionale, verbale) da cui derivare il grafo?** → la
-  skill di authoring in [`skills/md-drd-authoring/`](../skills/md-drd-authoring/SKILL.md) itera
+  skill di authoring in [`skills/themis-authoring/`](../skills/themis-authoring/SKILL.md) itera
   `validate`/`fix-plan` automaticamente fino a zero difetti bloccanti.

@@ -1,6 +1,6 @@
-# Catalogo dei controlli MD-DRD (versione 1.0, MD-DRD-SPEC-001/1.0)
+# Catalogo dei controlli Themis (versione 1.0, THEMIS-SPEC-001/1.0)
 
-> Documento **generato** da `md_drd/data/rules.yaml` con `md-drd rules --markdown`.
+> Documento **generato** da `themis/data/rules.yaml` con `themis rules --markdown`.
 > Non modificare a mano: la fonte e' il catalogo.
 
 73 controlli implementati, 10 identificatori riservati, in 10 gate.
@@ -339,7 +339,7 @@ open_points:
 
 La copertura e' la misura sintetica di quanta parte del materiale del committente e' stata effettivamente recepita: sotto il 95% la baseline non e' difendibile.
 
-**Come correggere** — Coprire con requisiti i segmenti prescrittivi ancora orfani (`md-drd fix-plan` li elenca) oppure escluderli motivandoli.
+**Come correggere** — Coprire con requisiti i segmenti prescrittivi ancora orfani (`themis fix-plan` li elenca) oppure escluderli motivandoli.
 
 **Esempio non conforme**
 

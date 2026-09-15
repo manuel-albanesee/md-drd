@@ -1,12 +1,12 @@
-# MD-DRD-SPEC-001 — Specifica del grafo canonico di requisiti
+# THEMIS-SPEC-001 — Specifica del grafo canonico di requisiti
 
 **Versione:** 1.0
-**Stato:** normativa, in vigore per `md-drd` >= 2.0.0
+**Stato:** normativa, in vigore per `themis` >= 2.0.0
 
-> **Nota sulla provenienza di questo documento.** Il toolkit `md-drd` cita questa specifica in
+> **Nota sulla provenienza di questo documento.** Il toolkit `themis` cita questa specifica in
 > tutto il codice (`§2`, `§3.1`, `§5..§14`, `§16.2`, ...) fin dalla sua prima versione interna, ma
 > il testo non era mai stato pubblicato: chi comprava il prodotto ne vedeva l'applicazione
-> (`docs/RULEBOOK.md`, i messaggi di `md-drd validate`) senza poterne leggere la fonte. Questo
+> (`docs/RULEBOOK.md`, i messaggi di `themis validate`) senza poterne leggere la fonte. Questo
 > documento è la sua pubblicazione: ricostruisce, in forma normativa (clausole "DEVE"), esattamente
 > le regole che i 10 gate implementano — la numerazione delle sezioni è quella già citata nel
 > codice, non una rinumerazione successiva. `docs/RULEBOOK.md` (motivazione, remediation, esempi
@@ -16,12 +16,12 @@
 
 ## 1. Scopo e ambito
 
-MD-DRD (**M**ark**D**own **D**esign & **R**equirements **D**ocument) definisce un **grafo
-canonico** di requisiti — bisogno → requisito → architettura → work package → test — come unica
-fonte di verità di un progetto software, in sostituzione di una specifica scritta in prosa.
+Themis definisce un **grafo canonico** di requisiti — bisogno → requisito → architettura → work
+package → test — come unica fonte di verità di un progetto software, in sostituzione di una
+specifica scritta in prosa.
 Il grafo è conforme a questa specifica se e solo se supera tutti i controlli **bloccanti** dei 10
 gate deterministici `G0`..`G9` definiti alle sezioni 5-14. Un'implementazione conforme (come
-`md-drd`) verifica meccanicamente ogni clausola qui sotto; nessuna clausola è lasciata al giudizio
+`themis`) verifica meccanicamente ogni clausola qui sotto; nessuna clausola è lasciata al giudizio
 di chi legge.
 
 Questa specifica è agnostica rispetto al dominio applicativo: si applica a qualunque progetto che

@@ -1,6 +1,6 @@
-# MD-DRD — Schema del grafo canonico
+# Themis — Schema del grafo canonico
 
-> Documento **generato** da `md_drd/data/schema/md-drd-graph.schema.json`.
+> Documento **generato** da `themis/data/schema/themis-graph.schema.json`.
 > Non modificare a mano.
 
 ## Modello relazionale (chi referenzia chi)

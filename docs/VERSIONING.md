@@ -6,7 +6,7 @@ pipeline CI: qui sotto sono documentati separatamente, con dove trovarli nel cod
 
 ## 1. Versione del toolkit
 
-**Dove:** `md_drd._version.__version__` (unica fonte; `pyproject.toml` la legge dinamicamente via
+**Dove:** `themis._version.__version__` (unica fonte; `pyproject.toml` la legge dinamicamente via
 `[tool.setuptools.dynamic]`, non dichiara un numero proprio).
 
 **Politica:** [Semantic Versioning](https://semver.org/lang/it/) — `MAJOR.MINOR.PATCH`.
@@ -20,7 +20,7 @@ Cronologia in `CHANGELOG.md` (formato [Keep a Changelog](https://keepachangelog.
 
 ## 2. Versione del formato di output JSON
 
-**Dove:** `md_drd._version.OUTPUT_FORMAT_VERSION` (oggi `"1.0"`), incluso nell'envelope di ogni
+**Dove:** `themis._version.OUTPUT_FORMAT_VERSION` (oggi `"1.0"`), incluso nell'envelope di ogni
 risposta `--format json`/tool MCP.
 
 **Politica:** cambia **solo** per modifiche incompatibili della *forma* dei payload (rinominare o
@@ -36,15 +36,15 @@ formato di output).
 ## 3. Versione dello schema del grafo (`meta.spec_version`)
 
 **Dove:** campo obbligatorio `meta.spec_version` di ogni grafo, vincolato dallo schema JSON
-(`md_drd/data/schema/md-drd-graph.schema.json`) a `const: "MD-DRD-SPEC-001/1.0"`.
+(`themis/data/schema/themis-graph.schema.json`) a `const: "THEMIS-SPEC-001/1.0"`.
 
 **Politica attuale: nessuna tolleranza di versione minore.** Lo schema oggi accetta **solo**
-`"MD-DRD-SPEC-001/1.0"` letterale — qualunque altro valore (incluso un ipotetico `.../1.1`) è
+`"THEMIS-SPEC-001/1.0"` letterale — qualunque altro valore (incluso un ipotetico `.../1.1`) è
 rifiutato dallo schema stesso, prima ancora che i gate `G0`..`G9` entrino in gioco. Non esiste
 oggi un meccanismo di negoziazione, warning "versione più vecchia" o migrazione automatica: un
 grafo con `spec_version` diverso da quello atteso semplicemente non valida.
 
-**Intenzione futura (non ancora implementata):** quando uscirà una `MD-DRD-SPEC-001/1.1` (o
+**Intenzione futura (non ancora implementata):** quando uscirà una `THEMIS-SPEC-001/1.1` (o
 superiore), la scelta fra *rifiuto secco*, *warning con validazione permissiva* o *migrazione
 automatica del grafo* è una decisione di prodotto da prendere a quel punto, guidata da cosa
 rompe realmente la compatibilità fra le due versioni dello schema — non un impegno implementativo
@@ -55,6 +55,6 @@ preso ora. Questa sezione va aggiornata quando quella decisione verrà presa.
 Cambiano per ragioni indipendenti: il motore può guadagnare un nuovo comando (`MINOR` del
 toolkit) senza toccare né la forma dell'output JSON né lo schema del grafo; il formato di output
 può stabilizzarsi per anni mentre il toolkit continua a ricevere patch; lo schema del grafo (la
-metodologia MD-DRD-SPEC-001 in sé) evolve secondo un ciclo editoriale suo, non secondo il ciclo di
+metodologia THEMIS-SPEC-001 in sé) evolve secondo un ciclo editoriale suo, non secondo il ciclo di
 rilascio del software che la implementa. Legarle a un solo numero costringerebbe un consumatore
 a ri-verificare tutto ad ogni release, anche quando nulla di ciò che gli interessa è cambiato.
